@@ -1,7 +1,7 @@
 package co.com.sofka.bibliotecaReactiva.Routers.Recurso;
 
 import co.com.sofka.bibliotecaReactiva.DTOs.RecursoDTO;
-import co.com.sofka.bibliotecaReactiva.UseCases.Recurso.UseCaseBuscar;
+import co.com.sofka.bibliotecaReactiva.UseCases.Recurso.UseCaseBuscarPorId;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -13,9 +13,9 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class BuscarRecursoRouter {
+public class BuscarRecursoPorIdRouter {
     @Bean
-    public RouterFunction<ServerResponse> consultarRecursos(UseCaseBuscar useCase) {
+    public RouterFunction<ServerResponse> consultarRecursos(UseCaseBuscarPorId useCase) {
         return route(GET("/recursos/buscar/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request ->
                         ServerResponse.ok()

@@ -9,11 +9,11 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Validated
-public class UseCaseBuscar implements BuscarRecurso{
+public class UseCaseBuscarPorId implements BuscarRecurso{
     private final RepositorioRecurso repositorio;
     private final RecursoMapper mapper;
 
-    public UseCaseBuscar(RepositorioRecurso repositorioRecurso, RecursoMapper recursoMapper) {
+    public UseCaseBuscarPorId(RepositorioRecurso repositorioRecurso, RecursoMapper recursoMapper) {
         this.repositorio = repositorioRecurso;
         this.mapper = recursoMapper;
     }
