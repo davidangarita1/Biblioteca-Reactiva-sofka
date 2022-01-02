@@ -1,4 +1,4 @@
-package co.com.sofka.bibliotecaReactiva.Routers;
+package co.com.sofka.bibliotecaReactiva.Routers.Recurso;
 
 import co.com.sofka.bibliotecaReactiva.DTOs.RecursoDTO;
 import co.com.sofka.bibliotecaReactiva.UseCases.Recurso.UseCaseBuscar;

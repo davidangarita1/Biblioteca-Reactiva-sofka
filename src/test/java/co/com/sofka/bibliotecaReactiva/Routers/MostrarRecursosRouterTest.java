@@ -4,6 +4,7 @@ import co.com.sofka.bibliotecaReactiva.Collections.Recurso;
 import co.com.sofka.bibliotecaReactiva.DTOs.RecursoDTO;
 import co.com.sofka.bibliotecaReactiva.Mappers.RecursoMapper;
 import co.com.sofka.bibliotecaReactiva.Repositories.RepositorioRecurso;
+import co.com.sofka.bibliotecaReactiva.Routers.Recurso.MostrarRecursosRouter;
 import co.com.sofka.bibliotecaReactiva.UseCases.Recurso.UseCaseMostrarRecursos;
 import co.com.sofka.bibliotecaReactiva.Utils.Area;
 import co.com.sofka.bibliotecaReactiva.Utils.Tipo;
@@ -20,7 +21,6 @@ import reactor.core.publisher.Flux;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @WebFluxTest
