@@ -27,8 +27,8 @@ public class UseCaseDevolverRecurso implements ObtenerDisponibilidad{
             if (!r.isDisponible()) {
                 r.setDisponible(true);
                 r.setFecha(LocalDate.now());
-                repositorio.save(r);
-                return Mono.just("El recurso fue devuelto con exito");
+
+                return repositorio.save(r).thenReturn("El recurso fue devuelto con exito");
             }
             return Mono.just("El recurso no está prestado");
         });
