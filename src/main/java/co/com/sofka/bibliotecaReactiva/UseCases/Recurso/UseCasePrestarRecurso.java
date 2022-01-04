@@ -32,8 +32,7 @@ public class UseCasePrestarRecurso implements ObtenerDisponibilidad {
             if (r.isDisponible()) {
                 r.setDisponible(false);
                 r.setFecha(LocalDate.now());
-                repositorio.save(r);
-                return Mono.just("El recurso fue prestado con exito");
+                return repositorio.save(r).thenReturn("El recurso fue prestado con exito");
             }
             return Mono.just("El recurso no está disponible");
         });
