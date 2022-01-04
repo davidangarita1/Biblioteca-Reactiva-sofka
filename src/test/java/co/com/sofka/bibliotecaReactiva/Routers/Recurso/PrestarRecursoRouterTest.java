@@ -21,6 +21,7 @@ import reactor.core.publisher.Mono;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @WebFluxTest
@@ -47,6 +48,7 @@ class PrestarRecursoRouterTest {
         Mono<Recurso> recursoMono = Mono.just(recurso1);
 
         when(repositorio.findById(recurso1.getId())).thenReturn(recursoMono);
+        when(repositorio.save(any())).thenReturn(recursoMono);
 
 
         webTestClient.put()
@@ -56,6 +58,35 @@ class PrestarRecursoRouterTest {
                 .expectBody(String.class)
                 .value(userResponse -> {
                             Assertions.assertThat(userResponse.equals("El recurso fue prestado con exito"));
+                        }
+                );
+        Mockito.verify(repositorio,Mockito.times(1)).findById("123");
+
+    }
+
+    @Test
+    public void PrestarRecursoNoValidoTest() {
+        Recurso recurso1 = new Recurso();
+        recurso1.setId("123");
+        recurso1.setArea(Area.FANTASIA);
+        recurso1.setDisponible(false);
+        recurso1.setTipo(Tipo.LIBRO);
+        recurso1.setNombre("Harry Potter");
+        recurso1.setFecha(LocalDate.now());
+
+        Mono<Recurso> recursoMono = Mono.just(recurso1);
+
+        when(repositorio.findById(recurso1.getId())).thenReturn(recursoMono);
+        when(repositorio.save(any())).thenReturn(recursoMono);
+
+
+        webTestClient.put()
+                .uri("/recursos/prestar/123")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class)
+                .value(userResponse -> {
+                            Assertions.assertThat(userResponse.equals("El recurso no está disponible"));
                         }
                 );
         Mockito.verify(repositorio,Mockito.times(1)).findById("123");
