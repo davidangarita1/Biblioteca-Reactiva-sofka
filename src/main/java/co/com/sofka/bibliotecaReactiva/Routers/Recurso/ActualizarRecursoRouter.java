@@ -15,7 +15,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class ActualizarRecursoRouter {
     @Bean
-    public RouterFunction<ServerResponse> actualziarRecurso(UseCaseActualizar useCaseActualizar) {
+    public RouterFunction<ServerResponse> actualizarRecurso(UseCaseActualizar useCaseActualizar) {
         return route(PUT("/recursos/actualizar").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(RecursoDTO.class)
                         .flatMap(recursoDTO -> useCaseActualizar.apply(recursoDTO)
